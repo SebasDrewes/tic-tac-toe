@@ -1,0 +1,10 @@
+.display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    width: 5vw;
+    height: 5vh;
+}
+.cuadradito {
+    border: solid 1px;
+}
