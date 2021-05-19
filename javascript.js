@@ -1,5 +1,5 @@
 const GameBoard = (() => {
-    let gameBoard = ['X','O','X','O','X','O','X','O','X'];
+    let gameBoard = ['O','O','O','O','O','O','O','O','O'];
     const displayGameBoard = () => {
         const display = document.querySelector(".display");
         while (display.firstChild) {
@@ -8,6 +8,7 @@ const GameBoard = (() => {
         for (let i=0; i<gameBoard.length; i++) {
             const cuadradito = document.createElement('div');
             cuadradito.classList.add("cuadradito");
+            cuadradito.setAttribute("data", [i]);
             cuadradito.textContent = gameBoard[i];
             display.appendChild(cuadradito);
         }
@@ -19,14 +20,14 @@ const GameBoard = (() => {
 
 const GamePlay = (() => {
     const playerPlay = () => {
-        const cuadradito = document.querySelector(".cuadradito");
-        cuadradito.addEventListener('click', () => {
-            for (let i=0; i<GameBoard.gameBoard.length; i++) {
-                    GameBoard.gameBoard[i] = Sebas.getMark();
-            }
-        GameBoard.displayGameBoard();
-        })
-    }
+        const cuadradito = document.querySelectorAll(".cuadradito");
+        for (let i = 0; i < cuadradito.length; i++) {
+            cuadradito[i].addEventListener('click', () => {
+                cuadradito[i].textContent = Sebas.getMark();
+                let data = cuadradito[i].getAttribute('data');
+                GameBoard.gameBoard[data] = Sebas.getMark();
+        }
+ )}}
     return playerPlay;
 })();
 
