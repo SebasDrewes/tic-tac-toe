@@ -19,6 +19,36 @@ const GameBoard = (() => {
 
 
 const GamePlay = (() => {
+    //funcion para alertar ganador
+    const winner = () => {
+        if ((GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[1] === "X" && GameBoard.gameBoard[2] === "X") || 
+            (GameBoard.gameBoard[3] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[5] === "X") ||
+            (GameBoard.gameBoard[3] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[5] === "X") ||
+            (GameBoard.gameBoard[6] === "X" && GameBoard.gameBoard[7] === "X" && GameBoard.gameBoard[8] === "X") ||
+            (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[3] === "X" && GameBoard.gameBoard[6] === "X") ||
+            (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[3] === "X" && GameBoard.gameBoard[6] === "X") ||
+            (GameBoard.gameBoard[1] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[7] === "X") ||
+            (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[5] === "X" && GameBoard.gameBoard[8] === "X") ||
+            (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[8] === "X") ||
+            (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[6] === "X")){
+                console.log(`${firstPlayer.getName()} Won!`);
+            }else if((GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[1] === "O" && GameBoard.gameBoard[2] === "O") || 
+            (GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[5] === "O") ||
+            (GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[5] === "O") ||
+            (GameBoard.gameBoard[6] === "O" && GameBoard.gameBoard[7] === "O" && GameBoard.gameBoard[8] === "O") ||
+            (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[6] === "O") ||
+            (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[6] === "O") ||
+            (GameBoard.gameBoard[1] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[7] === "O") ||
+            (GameBoard.gameBoard[2] === "O" && GameBoard.gameBoard[5] === "O" && GameBoard.gameBoard[8] === "O") ||
+            (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[8] === "O") ||
+            (GameBoard.gameBoard[2] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[6] === "O")){
+                console.log(`${secondPlayer.getName()} Won!`);
+    }else if (GameBoard.gameBoard[0] !== "" && GameBoard.gameBoard[1] !== "" && GameBoard.gameBoard[2] !== ""
+           && GameBoard.gameBoard[3] !== "" && GameBoard.gameBoard[4] !== "" && GameBoard.gameBoard[5] !== ""
+           && GameBoard.gameBoard[6] !== "" && GameBoard.gameBoard[7] !== "" && GameBoard.gameBoard[8] !== ""){
+               console.log("Empate!")
+        }}
+    //funcion para tomar turnos y display mark en cuadradito
     let turn = true;
     const playerPlay = () => {
         const cuadradito = document.querySelectorAll(".cuadradito");
@@ -31,7 +61,7 @@ const GamePlay = (() => {
                     cuadradito[i].textContent = currentPlayer.getMark()
                     let data = cuadradito[i].getAttribute('data');
                     GameBoard.gameBoard[data] = currentPlayer.getMark()
-                    winner()
+                    winner();
                     
                 } else if (turn === false && cuadradito[i].textContent === "") {
                     turn = true
@@ -39,7 +69,7 @@ const GamePlay = (() => {
                 cuadradito[i].textContent = currentPlayer.getMark();
                 let data = cuadradito[i].getAttribute('data');
                 GameBoard.gameBoard[data] = currentPlayer.getMark()
-                winner()
+                winner();
         };
         })}}
     return playerPlay;
@@ -58,39 +88,3 @@ const firstPlayer = Player("Sebas", "X");
 const secondPlayer = Player("Moro", "O");
 GameBoard.displayGameBoard();
 GamePlay();
-
-function winner() {
-if (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[1] === "X" && GameBoard.gameBoard[2] === "X"){ 
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[3] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[5] === "X"){
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[6] === "X" && GameBoard.gameBoard[7] === "X" &&  GameBoard.gameBoard[8] === "X"){
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[3] === "X" && GameBoard.gameBoard[6] === "X"){
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[1] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[7] === "X"){
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[5] === "X" && GameBoard.gameBoard[8] === "X"){
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[8] === "X"){
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[6] === "X"){
-    console.log(`${firstPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[1] === "O" && GameBoard.gameBoard[2] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[5] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[6] === "O" && GameBoard.gameBoard[7] === "O" &&  GameBoard.gameBoard[8] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[6] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[1] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[7] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[2] === "O" && GameBoard.gameBoard[5] === "O" && GameBoard.gameBoard[8] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[8] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}else if (GameBoard.gameBoard[2] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[6] === "O"){
-    console.log(`${secondPlayer.getName()} Won!`);
-}
-}
