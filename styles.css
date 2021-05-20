@@ -8,3 +8,7 @@
 .cuadradito {
     border: solid 1px;
 }
+.cuadraditoWin {
+    border: solid 1px;
+    color: red;
+}
