@@ -2,8 +2,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    width: 5vw;
-    height: 5vh;
+    width: 50vw;
+    height: 50vh;
 }
 .cuadradito {
     border: solid 1px;
