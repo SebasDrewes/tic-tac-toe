@@ -1,19 +1,10 @@
 const Player = (name, mark) => {
     const getName = () => name;
     const getMark = () => mark;
-    return {getName, getMark}
+    return {name, mark, getName, getMark}
 }
 
 const GameBoard = (() => {
-    const displayCreatePlayer = () => {
-        const display = document.querySelector(".display");
-        const firstPlayerName = document.createElement('input');
-        firstPlayerName.classList.add("firstPlayerName");
-        const secondPlayerName = document.createElement('input');
-        secondPlayerName.classList.add("secondPlayerName");
-        display.appendChild(firstPlayerName);
-        display.appendChild(secondPlayerName);
-    }
     let gameBoard = ['','','','','','','','',''];
     const displayGameBoard = () => {
         const display = document.querySelector(".display");
@@ -53,14 +44,23 @@ const GameBoard = (() => {
         GamePlay.playerPlay();
         GamePlay.restart();
     })
-    return {gameBoard, displayGameBoard, winDisplay, displayCreatePlayer};
+    return {gameBoard, displayGameBoard, winDisplay};
 })(); 
 
 
 
 const GamePlay = (() => {
-    const firstPlayer = Player("Sebas", "X");
-    const secondPlayer = Player("Moro", "O");
+    const firstPlayer = () => {
+        const firstName = document.querySelector(".firstName")
+        const firstPlayer = Player(firstName.value, "X");
+        return firstPlayer;
+    }
+    const secondPlayer = () => {
+        const secondName = document.querySelector(".secondName")
+        const secondPlayer = Player(secondName.value, "O");
+        return secondPlayer;
+    }
+
     //funcion para alertar ganador
     const winner = () => {
         if ((GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[1] === "X" && GameBoard.gameBoard[2] === "X") || 
@@ -73,7 +73,7 @@ const GamePlay = (() => {
             (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[5] === "X" && GameBoard.gameBoard[8] === "X") ||
             (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[8] === "X") ||
             (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[6] === "X")){
-                console.log(`${firstPlayer.getName()} Won!`);
+                alert(`${firstPlayer().getName()} Won!`);
                 GameBoard.winDisplay();
             }else if((GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[1] === "O" && GameBoard.gameBoard[2] === "O") || 
             (GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[5] === "O") ||
@@ -85,12 +85,12 @@ const GamePlay = (() => {
             (GameBoard.gameBoard[2] === "O" && GameBoard.gameBoard[5] === "O" && GameBoard.gameBoard[8] === "O") ||
             (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[8] === "O") ||
             (GameBoard.gameBoard[2] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[6] === "O")){
-                console.log(`${secondPlayer.getName()} Won!`);
+                alert(`${secondPlayer().getMark()} Won!`);
                 GameBoard.winDisplay();
     }else if (GameBoard.gameBoard[0] !== "" && GameBoard.gameBoard[1] !== "" && GameBoard.gameBoard[2] !== ""
            && GameBoard.gameBoard[3] !== "" && GameBoard.gameBoard[4] !== "" && GameBoard.gameBoard[5] !== ""
            && GameBoard.gameBoard[6] !== "" && GameBoard.gameBoard[7] !== "" && GameBoard.gameBoard[8] !== ""){
-               console.log("Empate!");
+               alert("Empate!");
                GameBoard.winDisplay();
         }}
     //funcion para tomar turnos y display mark en cuadradito
@@ -98,11 +98,11 @@ const GamePlay = (() => {
     const playerPlay = () => {
         const cuadradito = document.querySelectorAll(".cuadradito");
         for (let i = 0; i < cuadradito.length; i++) {
-            let currentPlayer = firstPlayer;
+            let currentPlayer = firstPlayer();
             cuadradito[i].addEventListener('click', () => {
                 if (turn === true && cuadradito[i].textContent === ""){
                     turn = false
-                    currentPlayer = firstPlayer;
+                    currentPlayer = firstPlayer();
                     cuadradito[i].textContent = currentPlayer.getMark()
                     let data = cuadradito[i].getAttribute('data');
                     GameBoard.gameBoard[data] = currentPlayer.getMark()
@@ -110,7 +110,7 @@ const GamePlay = (() => {
                     
                 } else if (turn === false && cuadradito[i].textContent === "") {
                     turn = true
-                    currentPlayer = secondPlayer;
+                    currentPlayer = secondPlayer();
                     cuadradito[i].textContent = currentPlayer.getMark();
                     let data = cuadradito[i].getAttribute('data');
                     GameBoard.gameBoard[data] = currentPlayer.getMark()
