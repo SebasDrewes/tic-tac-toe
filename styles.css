@@ -1,14 +1,58 @@
+.displayGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+
+
+.title {
+    text-align: center;
+    font-size: 15vh;
+    margin: 0;
+}
+
+.start {
+    position: relative;
+    left: 8.5vw;
+    width: 50%;
+    height: 50%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    color: red;
+    padding: 0;
+}
+.restart {
+    position: relative;
+    left: 8.5vw;
+    width: 50%;
+    height: 10.5%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    color: red;
+    padding: 0;
+    display: none;
+}
 .display {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    width: 50vw;
-    height: 50vh;
 }
 .cuadradito {
-    border: solid 1px;
+    border: solid 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vh;
+    min-height: 15vh;
+
 }
 .cuadraditoWin {
-    border: solid 1px;
+    border: solid 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vh;
+    min-height: 15vh;
     color: red;
 }
