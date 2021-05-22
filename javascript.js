@@ -55,8 +55,8 @@ const GameBoard = (() => {
         const title = document.querySelector(".title");
         title.textContent = "Tic-Tac-Toe";
         GameBoard.displayGameBoard();
-        GamePlay.playerPlay();
         GamePlay.restart();
+        GamePlay.playerPlay();
     })
     return { gameBoard, displayGameBoard, winDisplay };
 })();
@@ -122,29 +122,40 @@ const GamePlay = (() => {
     }
     //funcion para tomar turnos y display mark en cuadradito
     let turn = true;
+    let rondas = 0
     const playerPlay = () => {
         const cuadradito = document.querySelectorAll(".cuadradito");
         for (let i = 0; i < cuadradito.length; i++) {
             let currentPlayer = firstPlayer();
-
+            const turns = document.querySelector(".turns")
             //funcionalidad vs pc
             const vspc = document.querySelector(".vspc")
+            function generateRandom() {
+                let randomNumbers = new Array();
+                for (let i = 0; i < 8; i++)
+                    if (cuadradito[i].textContent === "")
+                        randomNumbers.push(i);
+                let randomNumber = randomNumbers[Math.floor(Math.random() * randomNumbers.length)];
+                return randomNumber;
+            }
             if (vspc.checked === true) {
+                if (turn === false ) {
+                turn = true;
+                let randomNumber = generateRandom();
+                cuadradito[randomNumber].textContent = secondPlayer().getMark()
+                let dataRandom = cuadradito[randomNumber].getAttribute('data');
+                GameBoard.gameBoard[dataRandom] = secondPlayer().getMark();
+                //vuelve atras un loop
+                //para no perder EventListener
+                i = --i;//
+                /////////
+                } else {
                 cuadradito[i].addEventListener('click', () => {
-                    if (turn === true && cuadradito[i].textContent === "") {
+                    if (cuadradito[i].textContent === "") {
                         currentPlayer = firstPlayer();
                         cuadradito[i].textContent = currentPlayer.getMark()
                         let data = cuadradito[i].getAttribute('data');
                         GameBoard.gameBoard[data] = currentPlayer.getMark()
-
-                        function generateRandom() {
-                            let randomNumbers = new Array();
-                            for (let i = 0; i < 8; i++)
-                                if (cuadradito[i].textContent === "")
-                                    randomNumbers.push(i);
-                            let randomNumber = randomNumbers[Math.floor(Math.random() * randomNumbers.length)];
-                            return randomNumber;
-                        }
 
                         let randomNumber = generateRandom();
                         if (cuadradito[randomNumber] === undefined) {
@@ -437,18 +448,20 @@ const GamePlay = (() => {
                             GameBoard.gameBoard[data] = secondPlayer().getMark();
                             winner();
                         }
-                        ////////inteligencia AI////////
+                        //movimiento random
                         else {
                             cuadradito[randomNumber].textContent = secondPlayer().getMark()
                             let dataRandom = cuadradito[randomNumber].getAttribute('data');
                             GameBoard.gameBoard[dataRandom] = secondPlayer().getMark();
                             winner();
                         }
-
-                        //funcionalidad vs player
+                        ////////inteligencia AI////////
                     }
-                })
-            } else {
+                
+                })}
+            //funcionalidad vs player
+            
+        } else {
                 cuadradito[i].addEventListener('click', () => {
                     if (turn === true && cuadradito[i].textContent === "") {
                         turn = false
@@ -472,11 +485,21 @@ const GamePlay = (() => {
     }
     const restart = () => {
         GameBoard.gameBoard = ['', '', '', '', '', '', '', '', ''];
-        turn = true
+        function isEven(n) {
+            return n % 2 == 0;
+        }
+         
+        if (isEven(rondas) === true) {
+            turn = false;
+            rondas = ++rondas 
+        }else{
+            turn = true;
+            rondas = ++rondas 
+        }
         const cuadradito = document.querySelectorAll(".cuadradito");
         for (let i = 0; i < cuadradito.length; i++) {
             cuadradito[i].textContent = "";
         }
     }
-    return { playerPlay, restart };
+    return { playerPlay, restart, turn};
 })();
