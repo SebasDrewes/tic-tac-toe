@@ -1,10 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+body {
+    font-family: "Coming Soon";
+}
 .displayGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
 }
-
-
+.primeraParte {
+    display: block;
+}
+.opciones {
+    display:flex;
+    font-size: 3vh;
+    flex-direction: column;
+    border: solid 1px;
+    border-style: dashed solid;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    width: 18vw;
+}
+.segundaParte {
+    grid-column: span 3;
+}
 
 .title {
     text-align: center;
@@ -14,24 +33,31 @@
 
 .start {
     position: relative;
-    left: 8.5vw;
+    font-family: "Coming Soon";
+    left: 10vw;
     width: 50%;
     height: 50%;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    color: red;
+    font-size: 5vh;
+    font-weight: bolder;
+    border-style: dashed solid;
+    background: white;
+    margin: 10vh;
+    margin-bottom: 1vh;
+    color: rgb(0, 0, 0);
     padding: 0;
 }
 .restart {
     position: relative;
+    font-family: "Coming Soon";
     left: 8.5vw;
-    width: 50%;
+    width: 25%;
     height: 10.5%;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    background: white;
+    margin: 0;
+    margin-bottom: 1vh;
     color: red;
     padding: 0;
-    display: none;
+    visibility: hidden;
 }
 .display {
     display: grid;
@@ -40,20 +66,23 @@
 }
 .cuadradito {
     border: solid 4px;
+    border-style: outset;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5vh;
-    min-height: 15vh;
+    font-style: oblique;
+    font-size: 10vh;
+    min-height: 20vh;
 
 }
 .cuadraditoWin {
     border: solid 4px;
+    border-style: outset;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5vh;
-    min-height: 15vh;
-    color: red;
-}
+    font-style: oblique;
+    font-size: 10vh;
+    min-height: 20vh;
 
+}
