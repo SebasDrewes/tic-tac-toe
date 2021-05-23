@@ -113,7 +113,7 @@ body {
 }
 @media only screen and (max-width: 1030px) {
     .title {
-        font-size: 150%;
+        font-size: 200%;
     }
     .start {
         left: 25vw;
