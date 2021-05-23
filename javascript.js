@@ -86,7 +86,7 @@ const GamePlay = (() => {
     const firstPlayer = () => {
         const firstName = document.querySelector(".firstName")
         if (firstName.value === "") {
-            const firstPlayer = Player("Jugador", "X");
+            const firstPlayer = Player("El Jugador", "X");
             return firstPlayer
         } else {
             const firstPlayer = Player(firstName.value, "X");
@@ -97,7 +97,7 @@ const GamePlay = (() => {
     const secondPlayer = () => {
         const secondName = document.querySelector(".secondName")
         if (secondName.value === "" && vspc.checked === false) {
-            const secondPlayer = Player("Jugador", "O");
+            const secondPlayer = Player("El Jugador", "O");
             return secondPlayer
         } else if (secondName.value === "" && vspc.checked === true) {
             const secondPlayer = Player("La compu", "O");
