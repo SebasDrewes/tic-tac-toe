@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Tic-Tac-Toe</title>
-  </head>
-  <body>
-    <h1 class="title">Tic-Tac-Toe</h1>
-<div class="displayGrid">
-  <div class="primeraParte">
-    <div class="opciones">
-      <p><u>Opciones</u></p>
-      <p>Jugador vs Jugador</p>
-      <input type="checkbox" class="vspyer"></input>
-      <p>Jugador vs Compu</p>
-      <input type="checkbox" class="vspc"></input>
-    <p>Nombre de Jugador X</p>
-    <input class="firstName"></input>
-    <p>Nombre de Jugador O</p>
-    <input class="secondName"></input>
-  </div>
-</div>
-  <div class="segundaParte">
-    <button class="start">Nuevo juego</button>
-    <button class="restart">Nueva ronda</button>
-    <div class="display"></div>
-  </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="img/icon.png">
+  <title>Tic-Tac-Toe</title>
+</head>
+
+<body>
+  <h1 class="title">Tic-Tac-Toe</h1>
+  <div class="displayGrid">
+    <div class="primeraParte">
+      <div class="opciones">
+        <p><u>Opciones</u></p>
+        <p class="jvsc">Jugador vs Compu</p>
+        <label class="container">
+          <input type="checkbox" class="vspc" checked></input>
+          <span class="checkmark"></span>
+        </label>
+        <p class="jvsj">Jugador vs Jugador</p>
+        <label class="container">
+          <input type="checkbox" class="vspyer"></input>
+          <span class="checkmark"></span>
+        </label>
+        <p class="nX">Nombre de Jugador</p>
+        <input class="firstName"></input>
+        <p class="nO">Nombre de Jugador O</p>
+        <input class="secondName"></input>
+      </div>
+    </div>
+    <div class="segundaParte">
+      <button class="start">Nuevo juego</button>
+      <button class="restart">Nueva ronda</button>
+      <div class="display"></div>
+    </div>
     <div class="terceraParte">
       <p class="firstPlayerWins">Player X Wins: 0</p>
       <p class="secondPlayerWins">Player O Wins: 0</p>
     </div>
-</div>
-<script src="javascript.js"></script>
+  </div>
+  <script src="javascript.js"></script>
 </body>
+
 </html>

@@ -35,7 +35,12 @@ const GameBoard = (() => {
 
     const start = document.querySelector(".start");
     const restart = document.querySelector(".restart");
-    const opciones = document.querySelector(".opciones")
+    const vspc = document.querySelector(".vspc")
+    const vspyer = document.querySelector(".vspyer")
+    const nX = document.querySelector(".nX")
+    const nO = document.querySelector(".nO")
+    const firstName = document.querySelector(".firstName")
+    const secondName = document.querySelector(".secondName")
 
     start.addEventListener("click", () => {
         GameBoard.displayGameBoard();
@@ -52,6 +57,19 @@ const GameBoard = (() => {
         GamePlay.playerPlay();
         restart.style.cssText = "visibility: hidden"
     })
+    vspc.addEventListener("change", () => {
+        vspyer.checked = false;
+        nO.style.cssText = "display: none"
+        nX.textContent = "Nombre de Jugador"
+        secondName.value = "";
+        secondName.style.cssText = "display: none"
+    })
+    vspyer.addEventListener("change", () => {
+        vspc.checked = false;
+        nO.style.cssText = "display: block"
+        nX.textContent = "Nombre de Jugador X"
+        secondName.style.cssText = "display: block"
+    })
     return { gameBoard, displayGameBoard, winDisplay };
 })();
 
@@ -67,8 +85,8 @@ const GamePlay = (() => {
     const vspc = document.querySelector(".vspc")
     const firstPlayer = () => {
         const firstName = document.querySelector(".firstName")
-        if (firstName === "") {
-            const firstPlayer = Player(`Jugador`, "X");
+        if (firstName.value === "") {
+            const firstPlayer = Player("Jugador", "X");
             return firstPlayer
         } else {
             const firstPlayer = Player(firstName.value, "X");
@@ -78,10 +96,10 @@ const GamePlay = (() => {
 
     const secondPlayer = () => {
         const secondName = document.querySelector(".secondName")
-        if (secondName === "" && vspc.checked === false) {
-            const secondPlayer = Player(`Jugador`, "O");
+        if (secondName.value === "" && vspc.checked === false) {
+            const secondPlayer = Player("Jugador", "O");
             return secondPlayer
-        } else if (secondName === "" && vspc.checked === true) {
+        } else if (secondName.value === "" && vspc.checked === true) {
             const secondPlayer = Player("La compu", "O");
             return secondPlayer
         } else {
@@ -90,13 +108,15 @@ const GamePlay = (() => {
         }
     }
     const isEven = (n) => {
-            return n % 2 == 0;
+        return n % 2 == 0;
     }
     let xWins = 0;
     let oWins = 0;
+    const terceraParte = document.querySelector(".terceraParte")
     const xVictorias = document.querySelector(".firstPlayerWins");
     const oVictorias = document.querySelector(".secondPlayerWins");
     const actualizarContador = () => {
+        terceraParte.style.cssText = "visibility: visible";
         xVictorias.textContent = `${firstPlayer().getName()} (${firstPlayer().getMark()}) Rondas Ganadas: ${xWins}`
         oVictorias.textContent = `${secondPlayer().getName()} (${secondPlayer().getMark()}) Rondas Ganadas: ${oWins}`
     }
@@ -113,10 +133,17 @@ const GamePlay = (() => {
             (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[8] === "X") ||
             (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[6] === "X")) {
             GameBoard.winDisplay();
-            title.textContent = `Gano ${firstPlayer().getName()}! ${emojiFirstPlayer}`
-            reset.style.cssText = "visibility: visible";
-            xWins = ++xWins
-            actualizarContador();
+            if (firstPlayer().getName() && secondPlayer().getName() === "Jugador") {
+                title.textContent = `Gano Jugador ${firstPlayer().getMark()}! ${emojiFirstPlayer}`
+                reset.style.cssText = "visibility: visible";
+                xWins = ++xWins
+                actualizarContador();
+            } else {
+                title.textContent = `Gano ${firstPlayer().getName()}! ${emojiFirstPlayer}`
+                reset.style.cssText = "visibility: visible";
+                xWins = ++xWins
+                actualizarContador();
+            }
         } else if ((GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[1] === "O" && GameBoard.gameBoard[2] === "O") ||
             (GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[5] === "O") ||
             (GameBoard.gameBoard[3] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[5] === "O") ||
@@ -128,16 +155,21 @@ const GamePlay = (() => {
             (GameBoard.gameBoard[0] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[8] === "O") ||
             (GameBoard.gameBoard[2] === "O" && GameBoard.gameBoard[4] === "O" && GameBoard.gameBoard[6] === "O")) {
             GameBoard.winDisplay();
-            if (vspc.checked === true){
-            title.textContent = `Gano ${secondPlayer().getName()}! ${emojiPC}`;
-            reset.style.cssText = "visibility: visible";
-            oWins = ++oWins
-            actualizarContador()
+            if (vspc.checked === true) {
+                title.textContent = `Gano ${secondPlayer().getName()}! ${emojiPC}`;
+                reset.style.cssText = "visibility: visible";
+                oWins = ++oWins
+                actualizarContador()
+            } else if (firstPlayer().getName() && secondPlayer().getName() === "Jugador") {
+                title.textContent = `Gano Jugador ${secondPlayer().getMark()}! ${emojiSecondPlayer}`;
+                reset.style.cssText = "visibility: visible";
+                oWins = ++oWins
+                actualizarContador()
             } else {
-            title.textContent = `Gano ${secondPlayer().getName()}! ${emojiSecondPlayer}`;
-            reset.style.cssText = "visibility: visible";
-            oWins = ++oWins
-            actualizarContador()
+                title.textContent = `Gano ${secondPlayer().getName()}! ${emojiSecondPlayer}`;
+                reset.style.cssText = "visibility: visible";
+                oWins = ++oWins
+                actualizarContador()
             }
         } else if (GameBoard.gameBoard[0] !== "" && GameBoard.gameBoard[1] !== "" && GameBoard.gameBoard[2] !== ""
             && GameBoard.gameBoard[3] !== "" && GameBoard.gameBoard[4] !== "" && GameBoard.gameBoard[5] !== ""
@@ -491,7 +523,7 @@ const GamePlay = (() => {
 
             } else {
                 if (isEven(rondas) === true) {
-                title.textContent = `Turno de ${firstPlayer().getName()} (${firstPlayer().getMark()})`
+                    title.textContent = `Turno de ${firstPlayer().getName()} (${firstPlayer().getMark()})`
                 }
                 else if (isEven(rondas) === false) {
                     title.textContent = `Turno de ${secondPlayer().getName()} (${secondPlayer().getMark()})`

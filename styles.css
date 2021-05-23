@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
 body {
     font-family: "Coming Soon";
+    height: 100%;
 }
 .displayGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
 }
 .primeraParte {
@@ -18,11 +19,38 @@ body {
     border-style: dashed solid;
     align-items: center;
     justify-content: center;
-    min-height: 70vh;
+    height: fit-content;
     width: 18vw;
 }
+.nO {
+    display:none;
+} 
+.firstName {
+    margin-bottom:2vh;
+    font-family: "Coming Soon";
+}
+.secondName {
+    display:none;
+    font-family: "Coming Soon";
+    margin-bottom:2vh;
+}
 .segundaParte {
-    grid-column: span 3;
+    grid-column: span 5;
+}
+.terceraParte {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-wrap: wrap;
+    align-content: center;
+    font-size: 3vh;
+    border: solid 1px;
+    border-style: dashed solid;
+    margin: 3vw;
+    min-width: 10vw;
+    width: fit-content;
+    height: fit-content;
+    visibility:hidden;
 }
 
 .title {
@@ -30,18 +58,15 @@ body {
     font-size: 350%;
     margin: 0;
 }
-
 .start {
     position: relative;
     font-family: "Coming Soon";
-    left: 10vw;
+    left: 15vw;
     width: 50%;
-    height: 50%;
     font-size: 5vh;
     font-weight: bolder;
     border-style: dashed solid;
     background: white;
-    margin: 10vh;
     margin-bottom: 1vh;
     color: rgb(0, 0, 0);
     padding: 0;
@@ -49,13 +74,14 @@ body {
 .restart {
     position: relative;
     font-family: "Coming Soon";
-    left: 8.5vw;
-    width: 25%;
-    height: 10.5%;
+    left: 15vw;
+    width: 50%;
+    font-size: 5vh;
+    font-weight: bolder;
+    border-style: dashed solid;
     background: white;
-    margin: 0;
     margin-bottom: 1vh;
-    color: red;
+    color: rgb(0, 0, 0);
     padding: 0;
     visibility: hidden;
 }
@@ -84,5 +110,96 @@ body {
     font-style: oblique;
     font-size: 10vh;
     min-height: 20vh;
-
 }
+@media only screen and (max-width: 1030px) {
+    .title {
+        font-size: 150%;
+    }
+    .start {
+        left: 25vw;
+        font-size: 3vh;
+    }
+    .restart {
+        left: 25vw;
+        font-size: 3vh;
+    }
+    .opciones {
+        display:none;
+    }
+    .displayGrid {
+        display:block;
+    }
+    .terceraParte {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: fit-content;
+        font-size: 2vh;
+    }
+}
+
+/*CUSTOM CHECKMARK*/
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4vh;
+    width: 2vw;
+    border: 1px;
+    border-style: dashed solid;
+    background-color: #eee;
+  }
+  
+
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+
+  .container input:checked ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid rgb(0, 0, 0);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  /*CUSTOM CHECKMARK*/
