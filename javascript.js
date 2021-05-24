@@ -35,7 +35,8 @@ const GameBoard = (() => {
 
     const start = document.querySelector(".start");
     const restart = document.querySelector(".restart");
-    const vspc = document.querySelector(".vspc")
+    const vspc = document.querySelector(".vspc");
+    vspc.disabled = true;
     const vspyer = document.querySelector(".vspyer")
     const nX = document.querySelector(".nX")
     const nO = document.querySelector(".nO")
