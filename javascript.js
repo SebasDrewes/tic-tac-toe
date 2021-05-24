@@ -57,26 +57,25 @@ const GameBoard = (() => {
         GamePlay.playerPlay();
         restart.style.cssText = "visibility: hidden"
     })
-    vspc.addEventListener("change", () => {
-        if (vspyer.checked === true) {
+    const optionButton = () => {
+       if (vspc.checked === true) {
         vspyer.checked = false;
-        } else if (vspyer.checked === false) {
-            vspyer.checked = true;
-        }
         nO.style.cssText = "display: none"
         nX.textContent = "Nombre de Jugador"
         secondName.value = "";
         secondName.style.cssText = "display: none"
-    })
-    vspyer.addEventListener("change", () => {
-        if (vspc.checked === true) {
-        vspc.checked = false;
-        } else if (vspc.checked === false) {
-            vspc.checked = true;
-        }
+        } else if (vspyer.checked === false) {
+        vspc.checked = true;
         nO.style.cssText = "display: block"
         nX.textContent = "Nombre de Jugador X"
         secondName.style.cssText = "display: block"
+        }
+}
+    vspc.addEventListener("change", () => {
+        optionButton();
+    })
+    vspyer.addEventListener("change", () => {
+        optionButton();
     })
     return { gameBoard, displayGameBoard, winDisplay };
 })();
