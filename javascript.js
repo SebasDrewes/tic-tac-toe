@@ -133,7 +133,7 @@ const GamePlay = (() => {
             (GameBoard.gameBoard[0] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[8] === "X") ||
             (GameBoard.gameBoard[2] === "X" && GameBoard.gameBoard[4] === "X" && GameBoard.gameBoard[6] === "X")) {
             GameBoard.winDisplay();
-            if (firstPlayer().getName() && secondPlayer().getName() === "Jugador") {
+            if (firstPlayer().getName() && secondPlayer().getName() === "El Jugador") {
                 title.textContent = `Gano Jugador ${firstPlayer().getMark()}! ${emojiFirstPlayer}`
                 reset.style.cssText = "visibility: visible";
                 xWins = ++xWins
@@ -160,7 +160,7 @@ const GamePlay = (() => {
                 reset.style.cssText = "visibility: visible";
                 oWins = ++oWins
                 actualizarContador()
-            } else if (firstPlayer().getName() && secondPlayer().getName() === "Jugador") {
+            } else if (firstPlayer().getName() && secondPlayer().getName() === "El Jugador") {
                 title.textContent = `Gano Jugador ${secondPlayer().getMark()}! ${emojiSecondPlayer}`;
                 reset.style.cssText = "visibility: visible";
                 oWins = ++oWins
