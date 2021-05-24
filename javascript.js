@@ -58,9 +58,9 @@ const GameBoard = (() => {
         restart.style.cssText = "visibility: hidden"
     })
     vspc.addEventListener("change", () => {
-        if (vspc.checked === true) {
+        if (vspyer.checked === true) {
         vspyer.checked = false;
-        } else if (vspc.checked === false) {
+        } else if (vspyer.checked === false) {
             vspyer.checked = true;
         }
         nO.style.cssText = "display: none"
@@ -69,10 +69,10 @@ const GameBoard = (() => {
         secondName.style.cssText = "display: none"
     })
     vspyer.addEventListener("change", () => {
-        if (vspyer.checked === true) {
-        vspyer.checked = false;
-        } else if (vspyer.checked === false) {
-            vspyer.checked = true;
+        if (vspc.checked === true) {
+        vspc.checked = false;
+        } else if (vspc.checked === false) {
+            vspc.checked = true;
         }
         nO.style.cssText = "display: block"
         nX.textContent = "Nombre de Jugador X"
