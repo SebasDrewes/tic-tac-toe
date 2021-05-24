@@ -63,12 +63,16 @@ const GameBoard = (() => {
         nX.textContent = "Nombre de Jugador"
         secondName.value = "";
         secondName.style.cssText = "display: none"
+        vspc.disabled = true;
+        vspyer.disabled = false;
     })
     vspyer.addEventListener("change", () => {
         vspc.checked = false;
         nO.style.cssText = "display: block"
         nX.textContent = "Nombre de Jugador X"
         secondName.style.cssText = "display: block"
+        vspc.disabled = false;
+        vspyer.disabled = true;
     })
     return { gameBoard, displayGameBoard, winDisplay };
 })();
